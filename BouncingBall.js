@@ -7,7 +7,7 @@ let context = canvas.getContext("2d");
 
 //BALL PROPERTIES
 let ballx = canvas.width / 2; // ball x position
-let bally = canvas.height / 2;//ball y position
+let bally = canvas.height - 20;//ball y position
 let ballVx = 1; // ball x speed
 let ballVy = 1; // ball y speed
 let ballRadius = 10; // ball R
@@ -181,7 +181,7 @@ function move() {
 	brakeBricks();
 
 	ballx += ballVx;
-	bally += ballVy;
+	bally -= ballVy;
 
 
 //ball move up or down
@@ -193,10 +193,17 @@ function move() {
 		}
 		else {
 			lives--;
-			if (lives == 0) {
+			if (!lives) {
 				alert("Gàaaaaa");
 				document.location.reload();
 			}
+			else {
+                ballx = canvas.width/2;
+                bally = canvas.height-paddleHeight - ballRadius; 
+                ballVx = 1;
+                ballVy = 1;
+                paddleX = (canvas.width-paddleWidth)/2;
+            }
 
 		}
 	}
